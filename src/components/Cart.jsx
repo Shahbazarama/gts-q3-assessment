@@ -1,32 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Cart extends Component {
-
-  render() {
-    const subtotal = this.props.cartCameras.reduce(( accumulator, camera ) =>
-      accumulator + camera.price, 0);
-    const tax = subtotal * .086
-    const total = tax + subtotal
+function Cart({ removeFromCart, cartCameras, subtotal, tax, total }) {
     return (
       <div>
         <h2>Your Cart</h2>
         <ul>
-          {this.props.cartCameras.map(camera => {
+          {cartCameras.map(camera => {
             return (
-                <li>{camera.name}</li>
+              <>
+                <li style={{'listStyleType': 'none'}}>{camera.name}</li>
+                <button onClick={() => removeFromCart(camera.id)}>delete</button>
+              </>
             )
           })}
         </ul>
-        <h3>Subtotal: {subtotal}</h3>
-        <h3>Tax: {tax}</h3>
-        <h3><strong>Total: {total}</strong></h3>
+        <h3>Subtotal: {`$${subtotal.toFixed(2)}`}</h3>
+        <h3>Tax: {`$${tax.toFixed(2)}`}</h3>
+        <h3><strong>Total: {`$${total.toFixed(2)}`}</strong></h3>
         <button className="btn btn-primary">
           Checkout
         </button>
 
       </div>
     );
-  }
 }
 
 export default Cart;

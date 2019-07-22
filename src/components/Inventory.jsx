@@ -2,6 +2,18 @@ import React, { Component } from 'react';
 
 class Inventory extends Component {
 
+  addToCart = async (id) => {
+    let url = `http://localhost:8000/cameras/${id}`
+    const res = await fetch(url, {
+      method: 'PATCH',
+      body: JSON.stringify({inCart: true}),
+      headers: {'Content-Type': 'application/json'}
+    })
+
+    if(res.ok){
+      console.log(res)
+    }
+  }
 
   ratingCounter(starCount) {
     let returnString = ''
@@ -26,7 +38,7 @@ class Inventory extends Component {
             <p>Rating:
             {this.ratingCounter(camera.rating)}
             </p>
-            <button className="btn btn-primary">Add to Cart</button>
+            <button className="btn btn-primary" onClick={() => this.addToCart(camera.id)}>Add to Cart</button>
             </div>
           )
 
