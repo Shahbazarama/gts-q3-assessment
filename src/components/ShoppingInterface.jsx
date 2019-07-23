@@ -67,7 +67,7 @@ class ShoppingInterface extends Component {
 
   filterInventory = (value) => {
     let allInventory = this.state.savedInventory
-    let searchedInventory = allInventory.filter(camera => camera.name.toLowerCase().includes(value) === true)
+    let searchedInventory = allInventory.filter(camera => camera.name.toLowerCase().includes(value.toLowerCase()) === true)
     this.setState({
       cameras: searchedInventory
     })
