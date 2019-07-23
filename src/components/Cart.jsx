@@ -19,22 +19,22 @@ function Cart({ removeFromCart, cartCameras, subtotal, tax, total }) {
                 </li>
               </div>
               <div className="col-4">
-                <button className="btn btn-sm btn-danger float-right" onClick={() => removeFromCart(camera.id)}>delete</button>
+                <button className="btn btn-sm btn-danger float-right" onClick={() => removeFromCart(camera.id)}>Remove</button>
               </div>
             </div>
-          <hr />
+            <hr />
           </>
-          )
-        })}
-      </ul>
-      <h3 style={cartStyle}>Subtotal: {`$${subtotal.toFixed(2)}`}</h3>
-      <h3 style={cartStyle}>Tax: {`$${tax.toFixed(2)}`}</h3>
-      <h3 style={cartStyle}><strong>Total: {`$${total.toFixed(2)}`}</strong></h3>
-      <button style={{marginBottom: '25px', padding: '15px', width: '100%'}} className="btn btn-primary">
-        Checkout
-      </button>
-    </div>
-  );
+        )
+      })}
+    </ul>
+    <h3 style={cartStyle}>Subtotal: {`$${subtotal.toFixed(2)}`}</h3>
+    <h3 style={cartStyle}>Tax: {`$${tax.toFixed(2)}`}</h3>
+    <h3 style={cartStyle}><strong>Total: {`$${total.toFixed(2)}`}</strong></h3>
+    <button style={{marginBottom: '25px', padding: '15px', width: '100%'}} className="btn btn-primary">
+      Checkout
+    </button>
+  </div>
+);
 }
 
 export default Cart;

@@ -3,14 +3,6 @@ import ReactStars from 'react-stars';
 
 function Inventory({ filterInventory, addToCart, allCameras }) {
 
-  // function ratingCounter(starCount) {
-  //   let returnString = ''
-  //   for(let i = 0; i < starCount; i++){
-  //     returnString += '*'
-  //   }
-  //   return returnString
-  // }
-
   return (
     <>
     <div style={{padding: '15px'}}>

@@ -79,7 +79,7 @@ class ShoppingInterface extends Component {
     let total = 0
     if(this.state.cartCameras.length !== 0) {
       subtotal = this.state.cartCameras.reduce(( accumulator, camera ) =>
-            accumulator + camera.price, 0);
+      accumulator + camera.price, 0);
       tax = subtotal * .086
       total = tax + subtotal
     } else {
@@ -104,7 +104,7 @@ class ShoppingInterface extends Component {
             subtotal={subtotal}
             tax={tax}
             total={total}
-            />
+          />
         </div>
       </div>
     );
