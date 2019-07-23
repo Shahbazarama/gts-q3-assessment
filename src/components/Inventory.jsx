@@ -1,52 +1,40 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Inventory extends Component {
+function Inventory({ filterInventory, addToCart, allCameras }) {
 
-  addToCart = async (id) => {
-    let url = `http://localhost:8000/cameras/${id}`
-    const res = await fetch(url, {
-      method: 'PATCH',
-      body: JSON.stringify({inCart: true}),
-      headers: {'Content-Type': 'application/json'}
-    })
 
-    if(res.ok){
-      console.log(res)
-    }
-  }
 
-  ratingCounter(starCount) {
+  function ratingCounter(starCount) {
     let returnString = ''
     for(let i = 0; i < starCount; i++){
       returnString += '*'
     }
     return returnString
   }
-  render() {
-    return (
-      <>
-      <div>
-        <input placeholder="Filter what you're looking for here..." style={{width: "100%"}}/>
-      </div>
 
-        {this.props.allCameras.map(camera => {
-          return (
-            <div>
-            <h2>Camera Name: {camera.name}</h2>
-            <img src={`${camera.picture}`} alt='camera' style={{width: "100px", height: "100px"}}/>
-            <h4>Price: ${camera.price}</h4>
-            <p>Rating:
-            {this.ratingCounter(camera.rating)}
-            </p>
-            <button className="btn btn-primary" onClick={() => this.addToCart(camera.id)}>Add to Cart</button>
-            </div>
-          )
+  return (
+    <>
+    <div style={{padding: '15px'}}>
+      <input onChange={(e) => filterInventory(e.target.value)} className="form-control" placeholder="Filter what you're looking for here..." style={{width: "100%"}}/>
+    </div>
 
-        } )}
+    {allCameras.map(camera => {
+      return (
+        <div>
+          <h2>Camera Name: {camera.name}</h2>
+          <img src={`${camera.picture}`} alt='camera' style={{width: "150px", height: "150px"}}/>
+          <h4>Price: ${camera.price} {camera.onSale ? <strong style={{color: 'red'}}>on sale!</strong> : null}</h4>
+          <p>Rating:
+            {ratingCounter(camera.rating)}
+          </p>
+          <button className="btn btn-primary" onClick={() => addToCart(camera.id)}>Add to Cart</button>
+        </div>
+      )
 
-    </>
-  );
-}
+    } )}
+
+  </>
+);
 }
 
 export default Inventory;
