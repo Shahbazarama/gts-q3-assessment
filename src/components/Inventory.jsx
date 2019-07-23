@@ -1,16 +1,15 @@
 import React from 'react';
+import ReactStars from 'react-stars';
 
 function Inventory({ filterInventory, addToCart, allCameras }) {
 
-
-
-  function ratingCounter(starCount) {
-    let returnString = ''
-    for(let i = 0; i < starCount; i++){
-      returnString += '*'
-    }
-    return returnString
-  }
+  // function ratingCounter(starCount) {
+  //   let returnString = ''
+  //   for(let i = 0; i < starCount; i++){
+  //     returnString += '*'
+  //   }
+  //   return returnString
+  // }
 
   return (
     <>
@@ -22,19 +21,17 @@ function Inventory({ filterInventory, addToCart, allCameras }) {
       return (
         <div>
           <h2>Camera Name: {camera.name}</h2>
-          <img src={`${camera.picture}`} alt='camera' style={{width: "150px", height: "150px"}}/>
+          <img src={`${camera.picture}`} alt='camera' style={{width: "250px", height: "250px"}}/>
           <h4>Price: ${camera.price} {camera.onSale ? <strong style={{color: 'red'}}>on sale!</strong> : null}</h4>
-          <p>Rating:
-            {ratingCounter(camera.rating)}
-          </p>
+          Rating:
+            <ReactStars count={camera.rating} edit={false} size={20} color1={'#ffd700'}/>
+
           <button className="btn btn-primary" onClick={() => addToCart(camera.id)}>Add to Cart</button>
         </div>
-      )
-
-    } )}
-
-  </>
-);
+        )
+      })}
+    </>
+  );
 }
 
 export default Inventory;
